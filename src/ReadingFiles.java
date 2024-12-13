@@ -60,6 +60,8 @@ public class  ReadingFiles {
                 int words;
                 //holds the amount of characters
                 int characterNum = 0;
+                //checks for non-zero strings
+                int nonZeroLines = 0;
 
                 //Moving through file, reading, and printing each line of the selected file
                 while (reader.ready()) {
@@ -72,11 +74,14 @@ public class  ReadingFiles {
                     }
                     characterNum += rec.length();
                     line++;
+                    if (!rec.isEmpty()) {
+                        nonZeroLines++;
+                    }
 
                     //Prints the line # and the contents of the line
                     System.out.printf("\nLine%4d: %-60s ", line, rec);
                 }
-                words = spaces+1;
+                words = spaces + nonZeroLines;
                 reader.close(); // must close the file to seal it and clear buffer
                 System.out.println("\n\nData file read!"); //Success message
                 System.out.println("Number of Lines " + line);
